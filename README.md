@@ -1,4 +1,4 @@
-## 🪰 Cyber-Fly Bridge
+# 🪰 Cyber-Fly Bridge
 
 «讓 Cyber-Fly 看見 Android 世界，並透過自己的神經系統對它產生行為。 🤔🪰»
 
@@ -26,6 +26,7 @@ Cyber-Fly Bridge 不是單純的「手機遠端控制器」。
 
 它建立的是一個持續運作的感知 → 行為閉環：
 
+```
 📱 Android Screen
        │
        ▼
@@ -59,6 +60,7 @@ Cyber-Fly Bridge 不是單純的「手機遠端控制器」。
 📱 New Screen
        │
        └──────────────► 🔁
+```
 
 也就是：
 
@@ -149,6 +151,7 @@ APK 本身保持簡單。
 
 初始主畫面只有兩個主要設定：
 
+```
 ┌────────────────────────┐
 │  Cyber-Fly Bridge      │
 │                        │
@@ -159,6 +162,7 @@ APK 本身保持簡單。
 │     [ OFF / ON ]       │
 │                        │
 └────────────────────────┘
+```
 
 ---
 
@@ -196,8 +200,10 @@ ON
 
 第二個開關：
 
+```
 Full Screen Operation
 [ OFF / ON ]
+```
 
 OFF
 
@@ -219,6 +225,7 @@ Bridge 會在整個可操作螢幕範圍內，根據自身規則自行選擇隨�
 
 也就是：
 
+```
 🪰 Semantic
       ↓
 🌐 TCP
@@ -228,6 +235,7 @@ Bridge 會在整個可操作螢幕範圍內，根據自身規則自行選擇隨�
 🎲 Random Screen Position
       ↓
 👆 Android Action
+```
 
 Cyber-Fly 不會直接指定：
 
@@ -260,6 +268,7 @@ Bridge：
 2. 👆 執行一次 Click
 3. ✅ 立即結束
 
+```
 Semantic
    ↓
 🎲 Random Position
@@ -267,10 +276,11 @@ Semantic
 👆 CLICK
    ↓
 ✅ End
+```
 
 ---
 
-## 🖐️ LONG_PRESS
+### 🖐️ LONG_PRESS
 
 收到：
 
@@ -290,7 +300,7 @@ RELEASE
 
 ---
 
-## 👉 SWIPE
+### 👉 SWIPE
 
 收到：
 
@@ -311,7 +321,7 @@ Bridge：
 
 ---
 
-## ⬆️⬇️⬅️➡️ MOVE
+### ⬆️⬇️⬅️➡️ MOVE
 
 "MOVE_FORWARD"
 
@@ -347,6 +357,7 @@ Full Screen Mode 的核心不是：
 
 因此：
 
+```
 Cyber-Fly
    │
    │ CLICK
@@ -357,6 +368,7 @@ Bridge
    ├── 🎲 X₂,Y₂
    ├── 🎲 X₃,Y₃
    └── ...
+```
 
 具體選擇方式屬於 Bridge 的映射規則。
 
@@ -392,18 +404,24 @@ Full Screen Operation = OFF
 
 例如：
 
+```
 ⭕ A
    CLICK
    LONG_PRESS
+```
 
+```
 ⭕ B
    CLICK
    SWIPE
+```
 
+```
 ⭕ C
    CLICK
    MOVE_LEFT
    MOVE_RIGHT
+```
 
 ---
 
@@ -411,6 +429,7 @@ Full Screen Operation = OFF
 
 點擊某一個圓圈後，控制面板進入該圓圈的設定頁。
 
+```
 ┌────────────────────────┐
 │ <     Circle Settings  │
 │                        │
@@ -423,6 +442,7 @@ Full Screen Operation = OFF
 │                        │
 │ 🗑️ Delete Circle       │
 └────────────────────────┘
+```
 
 可以：
 
@@ -439,23 +459,26 @@ Full Screen Operation = OFF
 
 目前 Bridge v1 暫時只支援以下語意：
 
-#| 語意| Android 行為
-1| "CLICK"| 👆 點擊
-2| "LONG_PRESS"| 🖐️ 長按
-3| "RELEASE"| ✋ 取消行為
-4| "SWIPE"| 👉 滑動
-5| "MOVE_FORWARD"| ⬆️ 向前移動
-6| "MOVE_BACKWARD"| ⬇️ 向後移動
-7| "MOVE_LEFT"| ⬅️ 向左移動
-8| "MOVE_RIGHT"| ➡️ 向右移動
+| # | 語意 | Android 行為 |
+|---|---|---|
+| 1 | "CLICK" | 👆 點擊 |
+| 2 | "LONG_PRESS" | 🖐️ 長按 |
+| 3 | "RELEASE" | ✋ 取消行為 |
+| 4 | "SWIPE" | 👉 滑動 |
+| 5 | "MOVE_FORWARD" | ⬆️ 向前移動 |
+| 6 | "MOVE_BACKWARD" | ⬇️ 向後移動 |
+| 7 | "MOVE_LEFT" | ⬅️ 向左移動 |
+| 8 | "MOVE_RIGHT" | ➡️ 向右移動 |
 
 Cyber-Fly 未來可能產生更多語意。
 
 目前 Bridge 不支援的語意：
 
+```
 Semantic
    ↓
 None
+```
 
 None 不代表 Cyber-Fly 沒有這個語意。
 
@@ -475,11 +498,13 @@ CLICK
 
 Bridge 找到對應的 Circle 後：
 
+```
 ⭕
  ↓
 👆 Click
  ↓
 ✅ 結束
+```
 
 CLICK 不會持續存在。
 
@@ -491,11 +516,13 @@ CLICK 不會持續存在。
 
 "LONG_PRESS" 是持續型操作。
 
+```
 ⭕
  ↓
 🖐️ LONG_PRESS
  ↓
 保持
+```
 
 它不會自己取消。
 
@@ -515,9 +542,11 @@ RELEASE
 
 例如：
 
+```
 ⭕ A → LONG_PRESS
 ⭕ B → LONG_PRESS
 ⭕ C → LONG_PRESS
+```
 
 收到：
 
@@ -525,21 +554,27 @@ RELEASE
 
 Bridge 可以：
 
+```
 A ❌
 B ✅
 C ❌
+```
 
 也可以：
 
+```
 A ❌
 B ❌
 C ❌
+```
 
 甚至：
 
+```
 A ❌
 B ✅
 C ✅
+```
 
 也就是：
 
@@ -553,8 +588,10 @@ C ✅
 
 如果某個 Circle 設定：
 
+```
 ⭕
 SWIPE
+```
 
 收到：
 
@@ -581,8 +618,10 @@ Bridge：
 
 從該 Circle 的目前座標向前方滑動一小段距離。
 
+```
 ⭕
 ⬆️
+```
 
 移動距離有限制。
 
@@ -594,8 +633,10 @@ Bridge：
 
 從該 Circle 的目前座標向後方滑動一小段距離。
 
+```
 ⭕
 ⬇️
+```
 
 移動距離有限制。
 
@@ -627,26 +668,32 @@ Bridge v1 將操作分成兩種。
 
 一次性行為
 
+```
 CLICK
 SWIPE
+```
 
 執行完成後自動結束。
 
+```
 Semantic
    ↓
 Execute
    ↓
 ✅ End
+```
 
 ---
 
 持續性行為
 
+```
 LONG_PRESS
 MOVE_FORWARD
 MOVE_BACKWARD
 MOVE_LEFT
 MOVE_RIGHT
+```
 
 這些行為不會自行取消。
 
@@ -670,10 +717,12 @@ CLICK
 
 例如：
 
+```
 ⭕ A → CLICK
 ⭕ B → CLICK
 ⭕ C → CLICK
 ⭕ D → CLICK
+```
 
 Cyber-Fly 只傳：
 
@@ -681,10 +730,12 @@ CLICK
 
 Bridge 找到：
 
+```
 A
 B
 C
 D
+```
 
 然後自行決定執行集合。
 
@@ -714,10 +765,12 @@ Bridge 不要求 Cyber-Fly 指定特定 Circle。
 
 ⭕ Circle A
 
+```
 CLICK
 LONG_PRESS
 MOVE_LEFT
 MOVE_RIGHT
+```
 
 這是合法的。
 
@@ -725,18 +778,22 @@ MOVE_RIGHT
 
 ⭕ Circle B
 
+```
 CLICK
 LONG_PRESS
+```
 
 也是合法的。
 
 因此：
 
+```
 Circle
   ├── Semantic
   ├── Semantic
   ├── Semantic
   └── ...
+```
 
 沒有固定語意數量限制。
 
@@ -765,6 +822,7 @@ Bridge 會根據收到的語意，在整個可操作螢幕範圍內自行選擇�
 
 例如：
 
+```
               📱
 ┌────────────────────────┐
 │                        │
@@ -775,6 +833,7 @@ Bridge 會根據收到的語意，在整個可操作螢幕範圍內自行選擇�
 │                   🎲   │
 │                        │
 └────────────────────────┘
+```
 
 Cyber-Fly 只產生：
 
@@ -788,6 +847,7 @@ Bridge 才決定：
 
 它仍然維持：
 
+```
 Semantic
    ↓
 Bridge Mapping
@@ -795,6 +855,7 @@ Bridge Mapping
 🎲 Screen Position
    ↓
 Android Action
+```
 
 ---
 
@@ -806,8 +867,10 @@ Circle 設定頁左上角有：
 
 按下後返回：
 
+```
 🌐 TCP
 🖥️ Full Screen Operation
+```
 
 主控制畫面。
 
@@ -837,28 +900,38 @@ X
 
 面板開啟：
 
+```
 ⭕ A
 ⭕ B
 ⭕ C
+```
 
+```
         ↓
        ❌ X
+```
 
+```
 面板消失
 Circle 不可見
+```
 
         ↓
 
 內部仍然存在：
 
+```
 A
 B
 C
+```
 
         ↓
 
+```
 🪰 Cyber-Fly
 仍然可以使用它們
+```
 
 重新開啟面板後，Circle 可以再次顯示並進行編輯。
 
@@ -868,6 +941,7 @@ C
 
 Cyber-Fly Bridge 最終持續執行：
 
+```
               ┌─────────────────────┐
               │                     │
               ▼                     │
@@ -902,11 +976,13 @@ Cyber-Fly Bridge 最終持續執行：
               │                     │
               ▼                     │
         📱 New Screen ──────────────┘
+```
 
 ---
 
 ## 🪰 最終概念
 
+```
 👀 看見
   ↓
 🧠 神經處理
@@ -928,15 +1004,18 @@ Cyber-Fly Bridge 最終持續執行：
 🧠 再次處理
   ↓
 🔁 ...
+```
 
 Cyber-Fly Bridge 不替 Cyber-Fly 決定它想做什麼。
 
 它只提供：
 
+```
 «📱 一個真實 Android 世界
 🌐 一條即時 TCP 通道
 🌉 一套有限的語意 → 行為映射
 🎲 一套由 Bridge 自行決定的操作位置映射»
+```
 
 剩下的：
 
@@ -963,7 +1042,7 @@ Bridge 的工作只有：
 
 ---
 
-## 🤔🪰 Cyber-Fly Bridge
+**🤔🪰 Cyber-Fly Bridge**
 
 讓一隻數位果蠅，第一次真正「看見」一支手機。
 
